@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navber = () => {
 
@@ -47,7 +47,7 @@ const Navber = () => {
       </div>
       </div>
       <div className="navbar-end">
-        <a className="btn font-bold">Login</a>
+        <Link to="/login" className="btn font-bold">Login</Link>
       </div>
     </div>
   );
