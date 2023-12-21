@@ -4,9 +4,8 @@ const Navber = () => {
 
     const navber = <>
         <NavLink to="/">Home</NavLink>
-        <NavLink >About</NavLink>
         <NavLink >Featurs</NavLink>
-        <NavLink >About us</NavLink>
+        <NavLink >Contact us</NavLink>
     </>
 
   return (
