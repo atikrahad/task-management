@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import img from "../assets/Authentication/1.png";
-import { FcGoogle } from "react-icons/fc";
+import img from "../assets/Authentication/1.png"
 
-const Login = () => {
-  return (
-    <div>
+const Register = () => {
+    return (
+        <div>
       <div
         style={{ background: `url(${img})`, backgroundSize: "cover" }}
         className="hero min-h-screen"
@@ -12,7 +11,19 @@ const Login = () => {
         <div className="hero-content flex-col">
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 bg-opacity-25">
             <form className="card-body">
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-300">Login now!</h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-slate-300">Register!</h1>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-slate-100">Full Name</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="full name"
+                  className="input bg-slate-200 input-bordered"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-slate-100">Email</span>
@@ -24,6 +35,7 @@ const Login = () => {
                   required
                 />
               </div>
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-slate-100">Password</span>
@@ -36,20 +48,18 @@ const Login = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Register</button>
               </div>
               <h1 className="text-slate-300">
-                New user? <Link to="/register">Register</Link>
+                Already have account? <Link to="/login">Login</Link>
               </h1>
-              <div className="text-center">
-                <button className="btn w-full flex" onClick={()=>alert()}> Login with google<span><FcGoogle className="text-3xl"></FcGoogle></span></button>
-              </div>
+              
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default Login;
+export default Register;
