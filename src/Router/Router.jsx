@@ -3,10 +3,10 @@ import Landingpage from "../Landingpage/Landingpage";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Layout from "../Dashboard/Layout/Layout";
-import Alltask from "../Dashboard/Pages/Alltask";
 import Addtask from "../Dashboard/Pages/Addtask";
 import Profile from "../Dashboard/Pages/Profile";
 import Mytask from "../Dashboard/Pages/Mytask";
+import Tasks from "../Dashboard/Pages/Tasks";
 
 const router =createBrowserRouter([
     {
@@ -27,7 +27,7 @@ const router =createBrowserRouter([
         children: [
             {
                index: true, 
-               element: <Alltask></Alltask>
+               element: <Tasks></Tasks>
             },
             {
                path: '/dashboard/addtask', 

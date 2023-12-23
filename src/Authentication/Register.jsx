@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/Authentication/1.png"
 import useAuth from "../Hooks/useAuth";
 import axiospublic from "../Api/axiospublic";
@@ -6,6 +6,7 @@ import axiospublic from "../Api/axiospublic";
 const Register = () => {
 
     const {signUp} = useAuth()
+    const navigate = useNavigate()
 
     const handleCreateAccount = e =>{
       e.preventDefault()
@@ -13,6 +14,7 @@ const Register = () => {
       const email = form.email.value;
       const password = form.password.value;
       const name = form.name.value;
+      form.reset()
 
       const userinfo = {email, password, name}
 
@@ -22,6 +24,7 @@ const Register = () => {
         axiospublic.post("/user", userinfo)
         .then(res => {
           console.log(res.data);
+            navigate("/dashboard")
         })
       })
       .then(error => {
