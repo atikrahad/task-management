@@ -1,8 +1,35 @@
 import { IoIosAdd } from "react-icons/io";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { useContext } from "react";
+import { Authpro } from "../Router/Authprovider";
+import axiospublic from "../Api/axiospublic";
 
 const Addtask = () => {
+    const {user} = useContext(Authpro)
+
+
+
+    const handleTaskSubmit = e =>{
+        e.preventDefault()
+        const form = e.target;
+        const title = form.title.value
+        const description = form.description.value
+        const deadline = form.deadline.value
+        const select = form.select.value
+        const task = {
+            email: user?.email,
+            type: 'todo',
+            title,
+            description,
+            deadline,
+            select,
+        }
+        axiospublic.post("/task", task)
+        .then(res => console.log(res.data))
+    }
+
+
   return (
     <div className="border p-3 text-center">
       <button
@@ -19,20 +46,22 @@ const Addtask = () => {
               ✕
             </button>
           </form>
-          <form className="max-w-xl mx-auto">
+          <form method="dialog" onSubmit={handleTaskSubmit} className="max-w-xl mx-auto">
             <input
               type="text"
+              name="title"
               maxLength={25}
               placeholder="Task name"
               className="outline-none bg-transparent w-full "
             />
             <textarea
               maxLength={100}
+              name="description"
               className=" outline-none bg-transparent w-full"
               placeholder="Short description"
             ></textarea>
             <div className="flex bg-green-200 rounded-lg py-2 gap-2 items-center justify-between">
-              <select className="outline-none  bg-green-200 w-full">
+              <select name="select"  className="outline-none  bg-green-200 w-full">
                 <option value={"low"}>Low</option>
                 <option value={"modarate"}>Modarate</option>
                 <option value={"high"}>High</option>
@@ -40,6 +69,7 @@ const Addtask = () => {
 
               <input
                 type="number"
+                name="deadline"
                 placeholder="Deadline"
                 className="outline-none bg-green-200 p-2 w-full "
               />
