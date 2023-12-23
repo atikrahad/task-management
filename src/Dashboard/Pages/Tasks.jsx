@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
+import Singletask from "../../Components/Singletask";
+import Addtask from "../../Components/Addtask";
 
 const Tasks = () => {
   const [item, setItem] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
     fetch("task.json")
-    .then(res => res.json())
-    .then(data => setItem(data))
-  },[])
-  console.log(item);
+      .then((res) => res.json())
+      .then((data) => setItem(data));
+  }, []);
+
   return (
     <div>
-      <div></div>
-      <div>
+      <Addtask></Addtask>
+      <div className="flex items-center justify-between">
         <div className="border w-[70%] mx-auto min-h-screen">
-          {
-            item && item.map(el => <li key={el.id}>{el.title}</li>)
-          }
+          {item &&
+            item.map((el) => <Singletask key={el.id} el={el}></Singletask>)}
+        </div>
+
+        <div className="border w-[70%] mx-auto min-h-screen">
+          {item &&
+            item.map((el) => <Singletask key={el.id} el={el}></Singletask>)}
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ import Smsidber from "./Smsidber";
 import useNavlist from "../../Hooks/useNavlist";
 import { useContext } from "react";
 import { Authpro } from "../../Router/Authprovider";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
 const Layout = () => {
   const navlist = useNavlist();
@@ -34,9 +36,12 @@ const Layout = () => {
             </div>
           </div>
         </div>
-        <div className="min-h-screen pt-16 bg-slate-50">
-          <Outlet></Outlet>
-        </div>
+
+        <DndProvider backend={HTML5Backend}>
+          <div className="min-h-screen pt-16 bg-slate-50">
+            <Outlet></Outlet>
+          </div>
+        </DndProvider>
       </div>
     </div>
   );
