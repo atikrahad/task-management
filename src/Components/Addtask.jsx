@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Authpro } from "../Router/Authprovider";
 import axiospublic from "../Api/axiospublic";
 
-const Addtask = () => {
+const Addtask = ({refetch}) => {
     const {user} = useContext(Authpro)
 
 
@@ -25,8 +25,10 @@ const Addtask = () => {
             deadline,
             select,
         }
+        form.reset()
         axiospublic.post("/task", task)
         .then(res => console.log(res.data))
+        refetch()
     }
 
 
