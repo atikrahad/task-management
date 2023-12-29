@@ -7,6 +7,7 @@ import Addtask from "../Dashboard/Pages/Addtask";
 import Profile from "../Dashboard/Pages/Profile";
 import Mytask from "../Dashboard/Pages/Mytask";
 import Tasks from "../Dashboard/Pages/Tasks";
+import Privateroute from "./Privateroute";
 
 const router =createBrowserRouter([
     {

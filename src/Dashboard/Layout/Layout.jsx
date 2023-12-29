@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Smsidber from "./Smsidber";
 import useNavlist from "../../Hooks/useNavlist";
 import { useContext } from "react";
@@ -9,9 +9,11 @@ import { DndProvider } from "react-dnd";
 const Layout = () => {
   const navlist = useNavlist();
   const { user, Logout } = useContext(Authpro);
+  const navigate = useNavigate()
 
   const handlelogout = () => {
     Logout();
+    navigate("/login")
   };
   return (
     <div className="grid grid-cols-12">
@@ -19,7 +21,7 @@ const Layout = () => {
         <div className="fixed px-10">
           <h1 className="text-center text-2xl font-bold py-2">Dashboard</h1>
           <ul className="hidden md:contents">{navlist}</ul>
-          <button className="btn" onClick={handlelogout}>
+          <button className="border w-full my-2" onClick={handlelogout}>
             Logout
           </button>
         </div>
@@ -30,8 +32,9 @@ const Layout = () => {
             <div className="contents md:hidden">
               <Smsidber></Smsidber>
             </div>
-            <div className="flex justify-between">
-              <h1 className="px-5 font-bold">ITask</h1>
+            <div className="flex items-center w-[80%]
+             justify-between">
+              <h1 className="px-5 text-3xl font-bold">I<span className="text-red-300">Task</span></h1>
               <h1 className="px-5 font-bold">{user?.email}</h1>
             </div>
           </div>

@@ -1,17 +1,22 @@
+/* eslint-disable react/prop-types */
 import { IoIosAdd } from "react-icons/io";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useContext } from "react";
 import { Authpro } from "../Router/Authprovider";
 import axiospublic from "../Api/axiospublic";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+// import { useQuery } from "@tanstack/react-query";
 
-const Addtask = ({refetch}) => {
+const Addtask = ({loaddata, setLoaddata}) => {
     const {user} = useContext(Authpro)
+    
 
 
 
     const handleTaskSubmit = e =>{
-        e.preventDefault()
+        // e.preventDefault()
         const form = e.target;
         const title = form.title.value
         const description = form.description.value
@@ -26,9 +31,24 @@ const Addtask = ({refetch}) => {
             select,
         }
         form.reset()
+        
         axiospublic.post("/task", task)
-        .then(res => console.log(res.data))
-        refetch()
+        .then(res => {
+          console.log(res.data);
+          toast.success('Successfully added task', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+        })
+        const newdata = [...loaddata, task]
+        setLoaddata(newdata)
+        return <a href="#"></a>
     }
 
 
@@ -43,7 +63,7 @@ const Addtask = ({refetch}) => {
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-green-100 min-h-[30vh]">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
+            
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
@@ -84,6 +104,7 @@ const Addtask = ({refetch}) => {
           </form>
         </div>
       </dialog>
+          <ToastContainer></ToastContainer>
     </div>
   );
 };
